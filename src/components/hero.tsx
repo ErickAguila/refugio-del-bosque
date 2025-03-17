@@ -2,7 +2,7 @@ export const Hero = () => {
     return (
         <section id="inicio" className="relative h-[700px]">
             <img
-                src="/src/assets/imgs/house1/img10.jpeg"
+                src="./src/assets/imgs/house1/img10.jpeg"
                 alt="Portada de departamentos"
                 className="absolute inset-0 w-full h-full object-cover"
             />

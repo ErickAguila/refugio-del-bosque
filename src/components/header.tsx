@@ -6,7 +6,7 @@ export const Header = () => {
             <div className="container mx-auto px-4 py-4">
                 <div className="flex justify-between items-center">
                     <div className="flex items-center gap-2">
-                        <BsFillHousesFill color="bg-green-900"   size={32}/>
+                        <BsFillHousesFill color="bg-green-900" size={32}/>
                         <p className='text-2xl font-bold capitalize text-green-900'>Refugio del bosque</p>
                     </div>
                     <nav className="hidden md:block">
