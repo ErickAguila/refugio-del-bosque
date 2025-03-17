@@ -1,8 +1,10 @@
+import banner from '../../public/imgs/house1/img10.jpeg';
+
 export const Hero = () => {
     return (
         <section id="inicio" className="relative h-[700px]">
             <img
-                src="./src/assets/imgs/house1/img10.jpeg"
+                src={banner}
                 alt="Portada de departamentos"
                 className="absolute inset-0 w-full h-full object-cover"
             />
