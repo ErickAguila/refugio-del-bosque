@@ -1,50 +1,102 @@
-# React + TypeScript + Vite
+# Refugio del Bosque
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing page de **Refugio del Bosque**, un alojamiento de cabañas en el sur de Chile. El sitio presenta las cabañas, sus principales características, la experiencia del entorno y una galería fotográfica, con llamados a la acción para consultar disponibilidad por WhatsApp.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Diseño responsivo para dispositivos móviles, tablets y escritorio.
+- Secciones de presentación, cabañas, beneficios, galería y contacto.
+- Galería con visor de imágenes y navegación mediante teclado.
+- Menú adaptable a pantallas pequeñas.
+- Enlace directo a WhatsApp con un mensaje de consulta predefinido.
+- Imágenes con carga diferida, salvo la imagen principal.
+- Estilos de foco visibles, enlace para saltar al contenido y soporte para `prefers-reduced-motion`.
 
-## Expanding the ESLint configuration
+## Tecnologías
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React 18
+- TypeScript
+- Vite 6
+- CSS
+- ESLint
+- React Icons
 
-- Configure the top-level `parserOptions` property like this:
+## Requisitos
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js 18.18 o posterior (se recomienda una versión LTS vigente).
+- npm.
+
+## Instalación y desarrollo local
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd refugio-del-bosque
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Vite mostrará en la terminal la dirección local de la aplicación, normalmente `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Scripts disponibles
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Inicia el servidor de desarrollo con recarga automática. |
+| `npm run build` | Comprueba TypeScript y genera la versión de producción en `dist/`. |
+| `npm run lint` | Analiza el código con ESLint. |
+| `npm run preview` | Sirve localmente el contenido generado en `dist/`. |
+
+## Estructura principal
+
+```text
+.
+├── public/
+│   └── imgs/                 # Fotografías de las cabañas
+├── src/
+│   ├── assets/fonts/         # Archivos locales de Montserrat
+│   ├── components/           # Secciones y componentes de la landing
+│   ├── data/index.ts         # Información de cabañas y galería
+│   ├── App.tsx               # Composición principal de la página
+│   ├── index.css             # Sistema visual y estilos responsivos
+│   └── main.tsx              # Punto de entrada de React
+├── package.json
+└── vite.config.ts
 ```
+
+## Actualización de contenido
+
+### Cabañas y galería
+
+La información de las cabañas y el listado de fotografías se mantienen en `src/data/index.ts`. Cada imagen debe existir previamente dentro de `public` y su ruta pública debe comenzar con `/`, por ejemplo:
+
+```ts
+image: '/imgs/house1/img4.jpeg'
+```
+
+Incluye siempre un texto alternativo breve y descriptivo al agregar una imagen.
+
+### Contacto por WhatsApp
+
+El número y el mensaje predeterminado se configuran en `src/components/whatsappButton.tsx`, mediante la constante `whatsappUrl`. Esta misma URL se reutiliza en la sección final de contacto.
+
+### Estilos
+
+Los colores, tipografías, espaciados, radios, sombras y transiciones principales se definen como variables CSS al comienzo de `src/index.css`. Se recomienda modificar esas variables para conservar la consistencia visual del sitio.
+
+## Generar una versión de producción
+
+```bash
+npm run build
+npm run preview
+```
+
+El resultado queda en `dist/` y puede publicarse en cualquier servicio de hosting de sitios estáticos.
+
+## Validación antes de publicar
+
+```bash
+npm run lint
+npm run build
+```
+
+Actualmente el proyecto no tiene una suite de pruebas automatizadas configurada.
