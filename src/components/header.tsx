@@ -1,30 +1,54 @@
-import { BsFillHousesFill } from "react-icons/bs";
+import { useEffect, useState } from 'react'
+
+const navigation = [
+  { label: 'Inicio', href: '#inicio' },
+  { label: 'Cabañas', href: '#cabanas' },
+  { label: 'Experiencia', href: '#experiencia' },
+  { label: 'Galería', href: '#galeria' },
+]
 
 export const Header = () => {
-    return (
-        <header className="bg-white shadow-sm">
-            <div className="container mx-auto px-4 py-4">
-                <div className="flex justify-between items-center">
-                    <div className="flex items-center gap-2">
-                        <BsFillHousesFill color="bg-green-900" size={32}/>
-                        <p className='text-2xl font-bold capitalize text-green-900'>Refugio del bosque</p>
-                    </div>
-                    <nav className="hidden md:block">
-                        <ul className="flex space-x-4">
-                            <li><a href="#inicio" className="text-gray-800 font-bold hover:text-green-900">Inicio</a></li>
-                            <li><a href="#servicios" className="text-gray-800 font-bold hover:text-green-900">Cabañas</a></li>
-                            <li><a href="#contacto" className="text-gray-800 font-bold hover:text-green-900">Contacto</a></li>
-                        </ul>
-                    </nav>
-                    <div className="md:hidden">
-                        <button className="text-gray-800 font-bold hover:text-green-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
-    )
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)')
+    const closeMenu = () => setIsOpen(false)
+    mediaQuery.addEventListener('change', closeMenu)
+    return () => mediaQuery.removeEventListener('change', closeMenu)
+  }, [])
+
+  return (
+    <header className="site-header">
+      <div className="container header-inner">
+        <a className="brand" href="#inicio" aria-label="Refugio del Bosque, ir al inicio">
+          <span className="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><path d="M16 3 8 14h4l-7 9h8v6h6v-6h8l-7-9h4L16 3Z" /></svg>
+          </span>
+          <span>Refugio del Bosque</span>
+        </a>
+
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-expanded={isOpen}
+          aria-controls="main-navigation"
+          aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+          onClick={() => setIsOpen((current) => !current)}
+        >
+          <span className="menu-icon" aria-hidden="true"><span /><span /><span /></span>
+        </button>
+
+        <nav id="main-navigation" className={`main-navigation${isOpen ? ' is-open' : ''}`} aria-label="Navegación principal">
+          <ul>
+            {navigation.map((item) => (
+              <li key={item.href}><a href={item.href} onClick={() => setIsOpen(false)}>{item.label}</a></li>
+            ))}
+          </ul>
+          <a className="button button-primary header-cta" href="#contacto" onClick={() => setIsOpen(false)}>
+            Consultar disponibilidad
+          </a>
+        </nav>
+      </div>
+    </header>
+  )
 }

@@ -1,20 +1,26 @@
-import banner from '../../public/imgs/house1/img10.jpeg';
-
-export const Hero = () => {
-    return (
-        <section id="inicio" className="relative h-[700px]">
-            <img
-                src={banner}
-                alt="Portada de departamentos"
-                className="absolute inset-0 w-full h-full object-cover"
-            />
-            <div className="relative z-10 flex flex-col items-center justify-center h-[700px] text-white text-center bg-black bg-opacity-50 px-4">
-                <h1 className="text-3xl md:text-5xl font-bold mb-4">Bienvenido a zona de descanso</h1>
-                <p className="text-lg md:text-xl mb-8">Descubre los mejores lugares para relajarte.</p>
-                <a href="#servicios" className="bg-green-900 hover:bg-green-950 text-white font-bold py-2 px-4 rounded">
-                    Ver cabañas
-                </a>
-            </div>
-        </section>
-    )
-}
+export const Hero = () => (
+  <section id="inicio" className="hero" aria-labelledby="hero-title">
+    <img
+      className="hero-image"
+      src="/imgs/house1/banner.png"
+      alt="Dos cabañas de Refugio del Bosque rodeadas de árboles y áreas verdes"
+      fetchPriority="high"
+    />
+    <div className="hero-overlay" />
+    <div className="container hero-content">
+      <p className="eyebrow eyebrow-light">Cabañas en el sur de Chile</p>
+      <h1 id="hero-title">Descansa en medio de la naturaleza</h1>
+      <p className="hero-copy">
+        Cabañas acogedoras rodeadas de bosque y tranquilidad. Un espacio para
+        desconectarte, respirar y compartir con quienes más quieres.
+      </p>
+      <div className="hero-actions">
+        <a className="button button-primary" href="#contacto">Consultar disponibilidad</a>
+        <a className="button button-secondary-light" href="#cabanas">Conocer las cabañas</a>
+      </div>
+    </div>
+    <a className="hero-scroll" href="#bienvenida" aria-label="Continuar hacia la presentación">
+      <span aria-hidden="true">↓</span> Descubre el refugio
+    </a>
+  </section>
+)
